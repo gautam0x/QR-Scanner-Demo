@@ -24,22 +24,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // After Scanner Activity Destroy This Function Called
+    // After Scanner Activity Destroy Handle The Result
     @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         // Extract String From Data
-        var resultString = data?.extras?.getString("QRCode")
+        val resultString = data?.extras?.getString("QRCode")
 
-        // Display Data
-        if(resultString == ""){
-            rsltStatus.text = "No QR Value Found"
-            rsltText.text = "..."
-        }
-        else{
-            rsltStatus.text = "QR Sucessfully Scanned"
-            rsltText.text = resultString
-        }
+        // set text Value
+        rsltText.text = resultString
     }
-
 }

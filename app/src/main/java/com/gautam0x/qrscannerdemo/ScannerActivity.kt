@@ -1,12 +1,12 @@
 package com.gautam0x.qrscannerdemo
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
-class ScannerActivity : Activity(),ZXingScannerView.ResultHandler {
+class ScannerActivity : AppCompatActivity(),ZXingScannerView.ResultHandler {
 
     // initialize new view to read QR
     var cameraView:ZXingScannerView? = null
@@ -28,11 +28,10 @@ class ScannerActivity : Activity(),ZXingScannerView.ResultHandler {
     override fun handleResult(rawResult: Result?) {
         cameraView!!.stopCamera()
 
-        //create new Intent
+        //create Temporary Intent to pass data
         val resultIntent = Intent()
         resultIntent.putExtra("QRCode",rawResult?.text)
         setResult(2,resultIntent)
-        println("OK Done"+rawResult.toString())
 
         finish()
     }
